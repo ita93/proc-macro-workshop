@@ -31,4 +31,9 @@ pub struct Command {
     current_dir: String,
 }
 
-fn main() {}
+fn main() {
+    let builder = Command::builder();
+
+    let _ = builder;
+}
+

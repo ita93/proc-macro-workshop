@@ -4,22 +4,22 @@
 //
 // Before moving on, have your derive macro parse the macro input as a
 // syn::DeriveInput syntax tree.
-//
-// Spend some time exploring the syn::DeriveInput struct on docs.rs by clicking
-// through its fields in the documentation to see whether it matches your
-// expectations for what information is available for the macro to work with.
-//
-//
-// Resources:
-//
-//   - The Syn crate for parsing procedural macro input:
-//     https://github.com/dtolnay/syn
-//
-//   - The DeriveInput syntax tree which represents input of a derive macro:
-//     https://docs.rs/syn/0.15/syn/struct.DeriveInput.html
-//
-//   - An example of a derive macro implemented using Syn:
-//     https://github.com/dtolnay/syn/tree/master/examples/heapsize
+    //
+    // Spend some time exploring the syn::DeriveInput struct on docs.rs by clicking
+    // through its fields in the documentation to see whether it matches your
+    // expectations for what information is available for the macro to work with.
+    //
+    //
+    // Resources:
+    //
+    //   - The Syn crate for parsing procedural macro input:
+    //     https://github.com/dtolnay/syn
+    //
+    //   - The DeriveInput syntax tree which represents input of a derive macro:
+    //     https://docs.rs/syn/0.15/syn/struct.DeriveInput.html
+    //
+    //   - An example of a derive macro implemented using Syn:
+    //     https://github.com/dtolnay/syn/tree/master/examples/heapsize
 
 use derive_builder::Builder;
 
@@ -32,8 +32,5 @@ pub struct Command {
 }
 
 fn main() {
-    let builder = Command::builder();
-
-    let _ = builder;
 }
 

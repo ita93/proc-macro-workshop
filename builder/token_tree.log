@@ -1,0 +1,225 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running /home/oni/WS/proc-macro-workshop/target/debug/deps/derive_builder-eef64a7f33ba6964
+     Running /home/oni/WS/proc-macro-workshop/target/debug/deps/tests-46cfaec8a7e0ba9b
+   Compiling derive_builder-tests v0.0.0 (/home/oni/WS/proc-macro-workshop/target/tests/derive_builder)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.64s
+
+
+test [0m[1mtests/01-parse.rs[0m ... [0m[32mok
+[0m
+[0m[1m[33mSTDOUT:
+[0m[33m┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+[0m[33mDeriveInput {
+[0m[33m    attrs: [],
+[0m[33m    vis: Public(
+[0m[33m        VisPublic {
+[0m[33m            pub_token: Pub,
+[0m[33m        },
+[0m[33m    ),
+[0m[33m    ident: Ident {
+[0m[33m        ident: "Command",
+[0m[33m        span: #0 bytes(1066..1073),
+[0m[33m    },
+[0m[33m    generics: Generics {
+[0m[33m        lt_token: None,
+[0m[33m        params: [],
+[0m[33m        gt_token: None,
+[0m[33m        where_clause: None,
+[0m[33m    },
+[0m[33m    data: Struct(
+[0m[33m        DataStruct {
+[0m[33m            struct_token: Struct,
+[0m[33m            fields: Named(
+[0m[33m                FieldsNamed {
+[0m[33m                    brace_token: Brace,
+[0m[33m                    named: [
+[0m[33m                        Field {
+[0m[33m                            attrs: [],
+[0m[33m                            vis: Inherited,
+[0m[33m                            ident: Some(
+[0m[33m                                Ident {
+[0m[33m                                    ident: "executable",
+[0m[33m                                    span: #0 bytes(1080..1090),
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                            colon_token: Some(
+[0m[33m                                Colon,
+[0m[33m                            ),
+[0m[33m                            ty: Path(
+[0m[33m                                TypePath {
+[0m[33m                                    qself: None,
+[0m[33m                                    path: Path {
+[0m[33m                                        leading_colon: None,
+[0m[33m                                        segments: [
+[0m[33m                                            PathSegment {
+[0m[33m                                                ident: Ident {
+[0m[33m                                                    ident: "String",
+[0m[33m                                                    span: #0 bytes(1092..1098),
+[0m[33m                                                },
+[0m[33m                                                arguments: None,
+[0m[33m                                            },
+[0m[33m                                        ],
+[0m[33m                                    },
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                        },
+[0m[33m                        Comma,
+[0m[33m                        Field {
+[0m[33m                            attrs: [],
+[0m[33m                            vis: Inherited,
+[0m[33m                            ident: Some(
+[0m[33m                                Ident {
+[0m[33m                                    ident: "args",
+[0m[33m                                    span: #0 bytes(1104..1108),
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                            colon_token: Some(
+[0m[33m                                Colon,
+[0m[33m                            ),
+[0m[33m                            ty: Path(
+[0m[33m                                TypePath {
+[0m[33m                                    qself: None,
+[0m[33m                                    path: Path {
+[0m[33m                                        leading_colon: None,
+[0m[33m                                        segments: [
+[0m[33m                                            PathSegment {
+[0m[33m                                                ident: Ident {
+[0m[33m                                                    ident: "Vec",
+[0m[33m                                                    span: #0 bytes(1110..1113),
+[0m[33m                                                },
+[0m[33m                                                arguments: AngleBracketed(
+[0m[33m                                                    AngleBracketedGenericArguments {
+[0m[33m                                                        colon2_token: None,
+[0m[33m                                                        lt_token: Lt,
+[0m[33m                                                        args: [
+[0m[33m                                                            Type(
+[0m[33m                                                                Path(
+[0m[33m                                                                    TypePath {
+[0m[33m                                                                        qself: None,
+[0m[33m                                                                        path: Path {
+[0m[33m                                                                            leading_colon: None,
+[0m[33m                                                                            segments: [
+[0m[33m                                                                                PathSegment {
+[0m[33m                                                                                    ident: Ident {
+[0m[33m                                                                                        ident: "String",
+[0m[33m                                                                                        span: #0 bytes(1114..1120),
+[0m[33m                                                                                    },
+[0m[33m                                                                                    arguments: None,
+[0m[33m                                                                                },
+[0m[33m                                                                            ],
+[0m[33m                                                                        },
+[0m[33m                                                                    },
+[0m[33m                                                                ),
+[0m[33m                                                            ),
+[0m[33m                                                        ],
+[0m[33m                                                        gt_token: Gt,
+[0m[33m                                                    },
+[0m[33m                                                ),
+[0m[33m                                            },
+[0m[33m                                        ],
+[0m[33m                                    },
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                        },
+[0m[33m                        Comma,
+[0m[33m                        Field {
+[0m[33m                            attrs: [],
+[0m[33m                            vis: Inherited,
+[0m[33m                            ident: Some(
+[0m[33m                                Ident {
+[0m[33m                                    ident: "env",
+[0m[33m                                    span: #0 bytes(1127..1130),
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                            colon_token: Some(
+[0m[33m                                Colon,
+[0m[33m                            ),
+[0m[33m                            ty: Path(
+[0m[33m                                TypePath {
+[0m[33m                                    qself: None,
+[0m[33m                                    path: Path {
+[0m[33m                                        leading_colon: None,
+[0m[33m                                        segments: [
+[0m[33m                                            PathSegment {
+[0m[33m                                                ident: Ident {
+[0m[33m                                                    ident: "Vec",
+[0m[33m                                                    span: #0 bytes(1132..1135),
+[0m[33m                                                },
+[0m[33m                                                arguments: AngleBracketed(
+[0m[33m                                                    AngleBracketedGenericArguments {
+[0m[33m                                                        colon2_token: None,
+[0m[33m                                                        lt_token: Lt,
+[0m[33m                                                        args: [
+[0m[33m                                                            Type(
+[0m[33m                                                                Path(
+[0m[33m                                                                    TypePath {
+[0m[33m                                                                        qself: None,
+[0m[33m                                                                        path: Path {
+[0m[33m                                                                            leading_colon: None,
+[0m[33m                                                                            segments: [
+[0m[33m                                                                                PathSegment {
+[0m[33m                                                                                    ident: Ident {
+[0m[33m                                                                                        ident: "String",
+[0m[33m                                                                                        span: #0 bytes(1136..1142),
+[0m[33m                                                                                    },
+[0m[33m                                                                                    arguments: None,
+[0m[33m                                                                                },
+[0m[33m                                                                            ],
+[0m[33m                                                                        },
+[0m[33m                                                                    },
+[0m[33m                                                                ),
+[0m[33m                                                            ),
+[0m[33m                                                        ],
+[0m[33m                                                        gt_token: Gt,
+[0m[33m                                                    },
+[0m[33m                                                ),
+[0m[33m                                            },
+[0m[33m                                        ],
+[0m[33m                                    },
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                        },
+[0m[33m                        Comma,
+[0m[33m                        Field {
+[0m[33m                            attrs: [],
+[0m[33m                            vis: Inherited,
+[0m[33m                            ident: Some(
+[0m[33m                                Ident {
+[0m[33m                                    ident: "current_dir",
+[0m[33m                                    span: #0 bytes(1149..1160),
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                            colon_token: Some(
+[0m[33m                                Colon,
+[0m[33m                            ),
+[0m[33m                            ty: Path(
+[0m[33m                                TypePath {
+[0m[33m                                    qself: None,
+[0m[33m                                    path: Path {
+[0m[33m                                        leading_colon: None,
+[0m[33m                                        segments: [
+[0m[33m                                            PathSegment {
+[0m[33m                                                ident: Ident {
+[0m[33m                                                    ident: "String",
+[0m[33m                                                    span: #0 bytes(1162..1168),
+[0m[33m                                                },
+[0m[33m                                                arguments: None,
+[0m[33m                                            },
+[0m[33m                                        ],
+[0m[33m                                    },
+[0m[33m                                },
+[0m[33m                            ),
+[0m[33m                        },
+[0m[33m                        Comma,
+[0m[33m                    ],
+[0m[33m                },
+[0m[33m            ),
+[0m[33m            semi_token: None,
+[0m[33m        },
+[0m[33m    ),
+[0m[33m}
+[0m[33m┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+[0m
+
+
+   Doc-tests derive_builder

@@ -2,7 +2,6 @@ extern crate proc_macro;
 
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::punctuated::Punctuated;
 use syn::{parse_macro_input, AngleBracketedGenericArguments, Data, DeriveInput, PathArguments};
 
 fn is_an_option(f: &syn::Field) -> Option<AngleBracketedGenericArguments> {
@@ -74,6 +73,23 @@ pub fn derive(input: TokenStream) -> TokenStream {
         }
     });
 
+    let build_fn = fields.iter().map(|f| {
+        let name = &f.ident;
+
+        match is_an_option(f) {
+            Some(_) => {
+                quote! {
+                    #name: self.#name.clone()
+                }
+            }
+            None => {
+                quote! {
+                    #name: self.#name.clone().ok_or(concat!("Missing ", stringify!(#name), " argument"))?
+                }
+            }
+        }
+    });
+
     let bident = syn::Ident::new(&bname, name.span());
     let expaned = quote! {
         use std::error::Error;
@@ -99,10 +115,7 @@ pub fn derive(input: TokenStream) -> TokenStream {
             pub fn build(&mut self) -> Result<#name, Box<dyn Error>> {
                 Ok(
                     #name {
-                        executable: self.executable.clone().ok_or("Missing executable argument")?,
-                        args: self.args.clone().ok_or("Missing args argument")?,
-                        env: self.env.clone().ok_or("Missing env argument")?,
-                        current_dir: self.current_dir.clone(),
+                        #(#build_fn,)*
                     }
                 )
             }

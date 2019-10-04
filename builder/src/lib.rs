@@ -2,15 +2,17 @@ extern crate proc_macro;
 
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{parse_macro_input, AngleBracketedGenericArguments, Data, DeriveInput, PathArguments};
+use syn::{
+    parse_macro_input, AngleBracketedGenericArguments, Attribute, Data, DeriveInput, PathArguments,
+};
 
 fn is_an_option(f: &syn::Field) -> Option<AngleBracketedGenericArguments> {
     let ty = &f.ty;
 
     match ty {
         syn::Type::Path(val) => {
-            let ty_ident = val.path.segments.first().unwrap().ident.clone();
-            if ty_ident.to_string() == "Option" {
+            let ty_ident = val.path.segments.first().unwrap().ident.to_string();
+            if ty_ident == "Option" {
                 if let PathArguments::AngleBracketed(angle_generic) =
                     &val.path.segments.first().unwrap().arguments
                 {
@@ -23,10 +25,47 @@ fn is_an_option(f: &syn::Field) -> Option<AngleBracketedGenericArguments> {
     }
 }
 
-#[proc_macro_derive(Builder)]
+fn has_attribute(f: &syn::Field) -> Option<String> {
+    match f.attrs.first() {
+        Some(attr) => {
+            match attr.parse_meta() {
+                Ok(syn::Meta::List(mtl)) => {
+                    let attr_path = mtl.path.get_ident().map_or(String::from("undifined"), |id| id.to_string());
+                    assert_eq!(&attr_path, "builder"); //only accept builder
+                    //only accept builder
+                    match mtl.nested.first() {
+                        Some(syn::NestedMeta::Meta(syn::Meta::NameValue(meta_name))) => {
+                            if &meta_name.path.get_ident().map_or(String::from("undefined"), |id| id.to_string()) != "each" {
+                                return None;
+                            }
+                            
+                            if let syn::Lit::Str(lit_str) = &meta_name.lit {
+                                return Some(lit_str.value());
+                            }
+                        }
+                        _ => {
+                            println!("Cannot find meta_name");
+                        }
+                    }
+                }
+                _ => {
+                    println!("MEta list not found");
+                }
+            }
+        }
+        None => {
+            return None;
+        }
+    }
+
+    None
+}
+
+#[proc_macro_derive(Builder, attributes(builder))]
 pub fn derive(input: TokenStream) -> TokenStream {
     let ast = parse_macro_input!(input as DeriveInput);
     let name = &ast.ident;
+    //    println!("{:#?}", &ast);
     let bname = format!("{}Builder", name);
     let fields = if let Data::Struct(ds) = &ast.data {
         ds.fields.clone()
@@ -57,7 +96,7 @@ pub fn derive(input: TokenStream) -> TokenStream {
     let fnized = fields.iter().map(|f| {
         let name = &f.ident;
         let mut ty = &f.ty;
-
+        
         let is_option = is_an_option(f);
 
         if let Some(ref generic_arg) = is_option {
@@ -65,6 +104,7 @@ pub fn derive(input: TokenStream) -> TokenStream {
                 ty = base_ty;
             }
         }
+
         quote! {
             pub fn #name(&mut self, #name: #ty) -> &mut Self{
                 self.#name = Some(#name);
